@@ -41,6 +41,9 @@ export class Device {
     //Other
     window.matchMedia("(display-mode: standalone)").matches;
 
+  pwaPrompt;
+  pwaInstalled;
+
   private pMedia;
   private tMedia;
   private setLayout;
@@ -59,6 +62,16 @@ export class Device {
     if (this.isPWA && navigator.virtualKeyboard) {
       navigator.virtualKeyboard.overlaysContent = true;
     }
+
+    const [pp, setPp] = createSignal<BeforeInstallPromptEvent>();
+    if (typeof window._PwaP === "object") setPp(window._PwaP);
+    else window._PwaP = setPp;
+    this.pwaPrompt = pp;
+
+    const [pi, setPi] = createSignal(false);
+    if (typeof window._PwaI === "boolean") setPi(window._PwaI);
+    else window._PwaI = setPi;
+    this.pwaInstalled = pi;
   }
 
   onLayout() {
