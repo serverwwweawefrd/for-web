@@ -4,6 +4,7 @@ import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import babelMacrosPlugin from "vite-plugin-babel-macros";
+import htmlMinifier from "vite-plugin-html-minifier";
 import Inspect from "vite-plugin-inspect";
 import { VitePWA } from "vite-plugin-pwa";
 import solidPlugin from "vite-plugin-solid";
@@ -28,6 +29,20 @@ export default defineConfig({
       defaultAsComponent: false,
     }),
     addFontPreload(),
+    htmlMinifier({
+      minify: {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeAttributeQuotes: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        removeEmptyAttributes: true,
+        minifyCSS: true,
+        minifyJS: true,
+      },
+    }),
     VitePWA({
       srcDir: "src",
       registerType: "autoUpdate",

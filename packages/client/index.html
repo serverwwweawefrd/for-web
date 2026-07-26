@@ -13,15 +13,14 @@
     <title>Stoat</title>
     <script>
       //This must run before module scripts can init
-      //TODO The HTML + inline JS doesn't get minified on prod build
-      addEventListener("beforeinstallprompt", (e) => {
+      onbeforeinstallprompt = (e) => {
         if (typeof window._PwaP === "function") window._PwaP(e);
         window._PwaP = e;
-      });
-      addEventListener("appinstalled", () => {
+      }
+      onappinstalled = () => {
         if (typeof window._PwaI === "function") window._PwaI(true);
         window._PwaI = true;
-      });
+      }
     </script>
   </head>
   <body>
