@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Launch localhost",
-      "type": "firefox",
+      "type": "Opera",
       "request": "launch",
       "reAttach": true,
       "url": "http://localhost:5174",
